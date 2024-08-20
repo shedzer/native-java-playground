@@ -1,0 +1,31 @@
+name: Native Image Java builds
+on: push
+jobs:
+  build:
+    name: Native Java on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+
+      - name: Build
+        run: |
+          ./mvnw clean native:compile -Pnative -DskipTests
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        env:
+        with:
+          name: native-java-playground-${{ matrix.os }}
+          path: |
+            native-java-playground/target/*.sh
+            native-java-playground/target/*.exe

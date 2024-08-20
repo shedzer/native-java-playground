@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: native-java-playground
+  shell:
+    context:
+      close: true
+  threads:
+    virtual:
+      enabled: true
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    org.example.nativejavaplayground: error
