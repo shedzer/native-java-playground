@@ -13,7 +13,7 @@ jobs:
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: '21'
-          distribution: 'graalvm'
+          distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           native-image-job-reports: 'true'
 
@@ -26,5 +26,5 @@ jobs:
         with:
           name: native-java-playground-${{ matrix.os }}
           path: |
-            target/*.sh
+            target/native-java-playground
             target/*.exe
