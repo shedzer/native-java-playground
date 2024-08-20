@@ -26,5 +26,5 @@ jobs:
         with:
           name: native-java-playground-${{ matrix.os }}
           path: |
-            native-java-playground/target/*.sh
-            native-java-playground/target/*.exe
+            target/*.sh
+            target/*.exe
